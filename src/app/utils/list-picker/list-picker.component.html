@@ -1,0 +1,6 @@
+<ol class="list-picker">
+    <li *ngFor="let item of listitems; let i = index" (click)="itemPicked.emit(i)">
+        <fa-icon [icon]="arrowRight" [fixedWidth]="true"></fa-icon>
+        {{ item }}
+    </li>
+</ol>

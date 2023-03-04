@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "@fontsource/gabriela";
+@import "@fontsource/georama";
+
+$primarybg: #E8DBC5;
+$secondarybg: #5F4842;
+$colorgold: #92723A;
+
+$padding-sm: .3rem;
+$padding-md: .6rem;
+$padding-lg: 1rem;
+
+.bg-primary {
+    background-color: $primarybg;
+}
+
+.bg-secondary {
+    background-color: $secondarybg;
+}
+
+body {
+    font-family: "Georama", sans-serif;
+}
+
+.dialog {
+    background-color: $secondarybg;
+    color: $primarybg;
+    border-radius: $padding-md;
+    box-shadow: 5px 5px 5px 3px rgba(146, 114, 58, .3);
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    outline-style: solid;
+    outline-width: 3px;
+    outline-color: rgba(146, 114, 58, .6);
+    padding: $padding-md;
+
+    &.dialog-lg {
+        padding: $padding-lg;
+        border-radius: $padding-lg;
+        width: 32rem;
+    }
+
+    h1 {
+        color: goldenrod;
+        text-align: center;
+    }
+
+    .separator {
+        display: flex;
+        align-items: center;
+        margin-bottom: .5rem;
+        margin-top: .5rem;
+    }
+
+}
+
+.golden {
+    color: goldenrod;
+}
+
+h1, h2, h3 {
+    font-family: "Gabriela", serif;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+hr {
+    border-color: goldenrod;
+    border-width: 1px;
+}
+
+list-picker>ol {
+
+    >li {
+        cursor: pointer;
+        display: flex;
+        margin-bottom: .2rem;
+        margin-top: .2rem;
+
+        >fa-icon {
+            margin-right: .6rem;
+            visibility: hidden;
+        }
+
+        &:hover {
+            color: goldenrod;
+
+            >fa-icon {
+                visibility: visible;
+            }
+        }
+    }
+}
