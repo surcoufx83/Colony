@@ -74,6 +74,8 @@ export class HomeComponent {
       return;
     this.controller.newGame(this.newgameFormGroup.value.name!, this.newgameFormGroup.value.empire!, this.newgameFormGroup.value.seed).subscribe((progress) => {
       //console.log(progress);
+      if (progress === true)
+        this.router.navigate(['play'])
     });
   }
 

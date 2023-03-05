@@ -1,1 +1,11 @@
-<p>game works!</p>
+<div class="board absolute overflow-scroll">
+    <div class="tiles flex flex-col">
+        <div class="row flex" *ngFor="let row of board; let rowindex = index">
+            <div class="tile" *ngFor="let col of row; let colindex = index">
+                <span class="m-auto">
+                    {{ col.terrain.spreadx }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

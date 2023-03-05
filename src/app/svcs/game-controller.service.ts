@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
+import { Block } from '../game/data/block';
 import { Game } from '../game/game';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class GameControllerService {
   @Output() newGameStartedEvent: EventEmitter<Game> = new EventEmitter<Game>();
 
   constructor() {
+  }
+
+  public get board(): Block[][]|undefined {
+    return this.game?.board;
   }
 
   public get gameRunning(): boolean {
@@ -38,12 +43,13 @@ export class GameControllerService {
       seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
     else
       seed = this.hashstring('' + seed);
-    this.game = new Game(playername, empirename, seed);
+    this.game = new Game(playername, empirename, seed, { x: 512, y: 384 });
     this.game.generate().subscribe((progress) => {
       console.log(progress);
       subject.next(progress);
+      if (progress === true)
+        this.newGameStartedEvent.emit(this.game);
     });
-    //this.newGameStartedEvent.emit(this.game);
     return subject;
   }
 

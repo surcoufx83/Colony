@@ -16,7 +16,7 @@ export interface Terrain {
 }
 
 export class Tundra implements Terrain {
-    maxy = .1;
+    maxy = .05;
     spreadx = 8;
     spready = 5;
 }
