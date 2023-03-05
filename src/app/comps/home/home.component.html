@@ -1,5 +1,5 @@
-<div class="w-screen h-screen flex justify-center">
-    <div class="h-screen flex flex-col justify-center">
+<div class="w-full h-full flex justify-center">
+    <div class="h-full flex flex-col mt-6 sm:mt-8 md:mt-16 lg:mt-32">
         <div class="dialog dialog-lg">
             <h1>
                 {{ i10n.home.title }}
@@ -9,13 +9,52 @@
                 <hr class="grow mx-4">
                 <fa-icon [icon]="randomIcon2"></fa-icon>
             </div>
+            <ng-container *ngTemplateOutlet="newgame"></ng-container>
             <list-picker [items]="listItems" (pick)="onListitemPicked($event)"
-                [ngStyle]="{ width: hidePicker ? 0 : '100%' }" class="truncate transition-all"></list-picker>
-            
+                [ngStyle]="{ height: hidePicker ? 0 : '100%' }" class="truncate "></list-picker>
         </div>
     </div>
 </div>
 
 <ng-template #newgame>
-    
+    <form #ngForm="ngForm" [formGroup]="newgameFormGroup" (ngSubmit)="onStartNewGame(ngForm)">
+        <ol class="list-picker truncate " [ngStyle]="{ height: !showNewGame ? 0 : '100%' }">
+            <li class="pb-2" (click)="showNewGame = false; hidePicker = false;">
+                <fa-icon class="always" [icon]="backIcon" [fixedWidth]="true"></fa-icon>
+                {{ i10n.common.back }}
+            </li>
+            <li class="flex">
+                <fa-icon [icon]="keyboardIcon" [fixedWidth]="true"></fa-icon>
+                <div class="grow flex">
+                    <div class="w-1/3">{{ i10n.newgame.inputs.empire }}:</div>
+                    <div class="grow pr-1">
+                        <input type="text" name="empirename" class="w-full mb-2" formControlName="empire">
+                    </div>
+                </div>
+            </li>
+            <li class="flex">
+                <fa-icon [icon]="keyboardIcon" [fixedWidth]="true"></fa-icon>
+                <div class="grow flex">
+                    <div class="w-1/3">{{ i10n.newgame.inputs.name }}:</div>
+                    <div class="grow pr-1">
+                        <input type="text" name="playername" class="w-full mb-2" formControlName="name">
+                    </div>
+                </div>
+            </li>
+            <li class="flex">
+                <fa-icon [icon]="keyboardIcon" [fixedWidth]="true"></fa-icon>
+                <div class="grow flex">
+                    <div class="w-1/3">{{ i10n.newgame.inputs.seed }}:</div>
+                    <div class="grow pr-1">
+                        <input type="text" name="seed" class="w-full mb-2" formControlName="seed">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <fa-icon [icon]="randomboatIcons[0]" [fixedWidth]="true"></fa-icon>
+                <button type="submit">{{ i10n.newgame.startgame }}</button>
+            </li>
+            
+        </ol>
+    </form>
 </ng-template>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AchievementsService } from './svcs/achievements.service';
+import { GameControllerService } from './svcs/game-controller.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(
+    private controller: GameControllerService,
+    private achievements: AchievementsService
+  ) { }
   
 }
